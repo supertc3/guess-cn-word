@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guessing Word Game</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./build/css/compiled.css">
+
+    <script type="text/javascript" src="./build/js/compiled.js"></script>
+
+    <script type="text/javascript">
+      var pageManager = new game.controller.PageManager();
+    </script>
+  </head>
+  <body>
+    <div class="game-start-page">
+      <h1>猜词游戏</h1>
+      <h2>游戏规则</h2>
+      <ol class="game-text">
+        <li>
+        每两人一组，具体的分组情况通过抽签决定.
+        <li>
+        一名队员猜词，另一名队员通过肢体或语言给猜词者提供信息（<span class="game-red-text">语言暗示不得出现所猜的字，不得同音／谐音</span>）．
+        <li>
+        猜对一个加一分，猜错不扣分．遇到难词可以选择跳过，最后得分多者获胜．（<span class="game-red-text">如果出现相同分数，则进行加时赛</span>）
+        <li>
+        每组限时<input class="game-timer-input" type="text" name="cycle">分钟．
+      </ol>
+      <div>
+        <button class="game-button game-start-button">开始</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+/**
+ * Copyright 2014 Justin Xing.
+ *
+ * Base GSS definitions.
+ */
+
+
+/* Font */
+@def GAME_TEXT_FONT_SMALLER            11px;
+@def GAME_TEXT_FONT_SMALL              12px;
+@def GAME_TEXT_FONT_NORMAL             14px;
+@def GAME_TEXT_FONT_LARGE              22px;
+@def GAME_TEXT_FONT_LARGER             32px;
+@def GAME_BASE_FONT_WEIGHT             300;
+@def GAME_BOLD_FONT_WEIGHT             600;
+@def GAME_BASE_FONT_FAMILY             Roboto,Arial,Helvetica,Sans-Serif;
+@def GAME_BASE_FONT_DEFAULT            GAME_TEXT_FONT_LARGE GAME_BASE_FONT_FAMILY;
+@def GAME_DEFAULT_LINE_HEIGHT          1.4;
+
+/* Text styles. */
+@def GAME_BASE_TEXT_COLOR              #222;
+@def GAME_DARK_TEXT_COLOR              #868686;
+@def GAME_LIGHT_TEXT_COLOR             #CCC;
+@def GAME_WHITE_TEXT_COLOR             #FFF;
+@def GAME_HIGHLIGHT_COLOR              JFK_BLUE;
+
+@def GAME_BASE_TEXT_PADDING            7px 15px;
+
+/* Title and subtitle. */
+@def GAME_TITLE_FONT_SMALL             18px;
+@def GAME_TITLE_FONT_MEDIUM            GAME_TEXT_FONT_LARGE;
+@def GAME_TITLE_FONT_LARGE             GAME_TEXT_FONT_LARGER;
+@def GAME_TITLE_FONT_WEIGHT            400;
+@def GAME_TITLE_LINE_HEIGHT            1.1;
+
+/* Link */
+@def GAME_BASE_LINK_COLOR              #15C;
+
+/* Background colors.  */
+@def GAME_BASE_BACKGROUND_COLOR        #FFF;
+/* Background color for elements like info text. */
+@def GAME_LIGHT_BACKGROUND_COLOR       #F1F1F1;
+@def GAME_GRAY_BACKGROUND_COLOR        #494949;
+@def GAME_DARK_GRAY_COLOR              34, 34, 34;
+@def GAME_DARK_BACKGROUND_COLOR        #222;
+@def GAME_SEPARATOR_BORDER             1px solid #CFCFCF;/*1px solid #E7E7E7;*/
+@def GAME_DARK_BORDER                  1px solid #737375;
+@def GAME_BASE_BORDER_RADIUS           3px;
+
+/* Definitions for sizes of common elements, images, etc */
+@def GAME_BASE_PORTRAIT_SIZE           30px;
+
+/* Button styles. */
+@def GAME_SUBMIT_BUTTON_TEXT_COLOR            #FFF;
+@def GAME_SUBMIT_BUTTON_TEXT_COLOR_DISABLED   #A1A9AD;
+@def GAME_SUBMIT_BUTTON_BORDER_COLOR          #3079ED;
+@def GAME_SUBMIT_BUTTON_BORDER_HOVER_COLOR    #2F5BB7;
+
+@def GAME_SHARE_BUTTON_BORDER_COLOR          #29691D;
+@def GAME_SHARE_BUTTON_BORDER_HOVER_COLOR    #2D6200;
+
+@def GAME_ACTION_BUTTON_BORDER_COLOR          transparent;
+@def GAME_ACTION_BUTTON_BORDER_HOVER_COLOR    #B0281A;
+
+@def GAME_BUTTON_TEXT_COLOR            #444;
+@def GAME_BUTTON_TEXT_HOVER_COLOR      #222;
+@def GAME_BUTTON_TEXT_PADDING          0 8px;
+@def GAME_BUTTON_BORDER_COLOR          #DCDCDC;
+@def GAME_BUTTON_BORDER_HOVER_COLOR    #C6C6C6;
+@def GAME_BUTTON_HOVER_SHADOW          0px 1px 1px rgba(0,0,0,0.1);
+@def GAME_BUTTON_HEIGHT                27px;
+
+
+/**
+ * z-index definitions, from bottom to top.
+ */
+@def GAME_BASE_ZINDEX_CONTENT          101;
+@def GAME_BASE_ZINDEX_HEADER           110;
+/* The popup element (e.g. menu). */
+@def GAME_BASE_ZINDEX_POPUP            1001;
+@def GAME_BASE_ZINDEX_DIALOG_MASK      1010;
+@def GAME_BASE_ZINDEX_DIALOG_CONTENT   1011;
+@def GAME_BASE_ZINDEX_DRAG_SELECT      10000;
+@def GAME_BASE_ZINDEX_BUTTER_BAR       20000;
+
+html,
+body {
+  background-color: #dcdcdc;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: GAME_BASE_TEXT_COLOR;
+  font: GAME_BASE_FONT_DEFAULT;
+  line-height: GAME_DEFAULT_LINE_HEIGHT;
+  overflow: hidden;
+  position: relative;
+}
+
+.game-button {
+  font-size: 16px;
+  line-height: 2;
+  width: 100px;
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="sv-gallery-prototype" default="build" basedir=".">
+  <!-- Define the global properties -->
+  <property name="tools.dir" value="${basedir}/tools" />
+  <property name="closure-compiler.jar" value="${tools.dir}/compiler.jar" />
+  <property name="closure-stylesheets.jar" value="${tools.dir}/closure-stylesheets.jar" />
+
+  <property name="gss.dir" value="${basedir}/gss" />
+  <property name="templates.dir" value="${basedir}/templates" />
+  <property name="javascript.dir" value="${basedir}/javascript" />
+  <property name="javascript.templates.dir" value="${javascript.dir}/templates" />
+  <property name="build.dir" value="${basedir}/build" />
+
+  <!-- TODO: Need to update this path based on your local directory -->
+  <property name="closure-library-base.dir" value="${basedir}/closure-library" />
+  <property name="closurebuilder.py" value="${closure-library-base.dir}/closure/bin/build/closurebuilder.py" />
+
+  <!-- The following parts are macro definition for compiling. -->
+  <!--
+  Uses closure-stylesheets.jar to compile *.gss in gss directory.
+  -->
+  <macrodef name="generate-styles">
+    <sequential>
+      <java jar="${closure-stylesheets.jar}" fork="true" failonerror="true" logError="true">
+        <arg line='--pretty-print' />
+        <arg line='--output-file ${build.dir}/css/compiled.css' />
+
+        <arg line='${gss.dir}/base.gss' />
+        <arg line='${gss.dir}/game.gss' />
+        <arg line='${gss.dir}/dialog.gss' />
+      </java>
+    </sequential>
+  </macrodef>
+
+  <!--
+  Uses Compiler to compile *.js in javascript directory.
+  -->
+  <macrodef name="generate-scripts">
+    <attribute name="outputfile"  default="${build.dir}/js/compiled.js" />
+    <attribute name="compilerjarfile" default="${closure-compiler.jar}" />
+    <attribute name="compilationlevel" default="WHITESPACE_ONLY" />
+    <attribute name="outputmode" default="compiled" />
+
+    <sequential>
+      <exec executable="python" failonerror="true" logError="true">
+        <arg value="${closurebuilder.py}" />
+        <arg line='--root=${closure-library-base.dir}/' />
+        <arg line='--root=${javascript.dir}/' />
+
+        <arg line='--input=${javascript.dir}/data/words_data.js' />
+        <arg line='--input=${javascript.dir}/ui/digittimer.js' />
+        <arg line='--input=${javascript.dir}/ui/wordgame.js' />
+        <arg line='--input=${javascript.dir}/controller/pagemanager.js' />
+
+        <arg line='--output_mode="@{outputmode}"' />
+        <arg line='--compiler_jar="@{compilerjarfile}"' />
+        <arg line='--compiler_flags="--compilation_level=@{compilationlevel}"' />
+        <arg line='--compiler_flags="--define=COMPILED"' />
+        <arg line='--output_file="@{outputfile}"' />
+      </exec>
+    </sequential>
+  </macrodef>
+
+
+  <!-- Initialize the directory for building files. -->
+  <target name="init">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.dir}/css"/>
+    <mkdir dir="${build.dir}/js"/>
+  </target>
+
+
+  <!-- Clean the directory for building files. -->
+  <target name="clean">
+    <delete dir="${build.dir}/css"/>
+    <delete dir="${build.dir}/js"/>
+    <delete dir="${build.dir}"/>
+  </target>
+
+
+  <target name="compile-styles" depends="clean, init" description="generates compiled styles">
+    <echo message="START TO COMPILE STYLES..."/>
+    <generate-styles />
+  </target>
+
+  <target name="compile-scripts" description="generates compiled scripts.">
+    <!-- Compilation Levels: WHITESPACE_ONLY, SIMPLE_OPTIMIZATIONS, ADVANCED_OPTIMIZATIONS -->
+    <echo message="START TO COMPILE ALL SCRIPTS..."/>
+    <generate-scripts  compilationlevel="SIMPLE_OPTIMIZATIONS" />
+  </target>
+
+  <target name="build" depends="compile-styles, compile-scripts" />
+</project>
